@@ -23,9 +23,17 @@ let currentSentence = null;
 // ===============================
 // Functions
 // ===============================
+
 function getRandomSentence() {
-  const index = Math.floor(Math.random() * sentences.length);
-  return sentences[index];
+  let newIndex;
+  
+  // ลูปสุ่มไปเรื่อยๆ ถ้าตัวเลขที่สุ่มได้ (newIndex) 
+  // ยังตรงกับประโยคปัจจุบัน (currentSentence)
+  do {
+    newIndex = Math.floor(Math.random() * sentences.length);
+  } while (currentSentence && sentences[newIndex] === currentSentence); 
+  
+  return sentences[newIndex];
 }
 
 function loadRandomSentence() {
@@ -33,6 +41,7 @@ function loadRandomSentence() {
   englishText.textContent = currentSentence.en;
   thaiText.textContent = currentSentence.th;
 }
+
 
 // ===============================
 // Event Listeners
