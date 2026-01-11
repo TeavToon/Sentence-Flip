@@ -1,1 +1,51 @@
+/* ตั้งค่าพื้นฐาน */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* สูงเต็มจอ */
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+/* ตกแต่งปุ่ม */
+.btn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #de8ce6;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    background-color: #de8ce6;
+}
 
