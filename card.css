@@ -1,64 +1,123 @@
-/* กำหนดขนาดและ Perspective สำหรับภาพรวมการ์ด */
+/* นำเข้า Font */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap');
+
+body {
+  background: #f4f7f6;
+  font-family: 'Kanit', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.game-container {
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+h1 { color: #2d3436; font-size: 1.5rem; margin-bottom: 30px; }
+
+/* พื้นที่วางการ์ด */
+.card-stack {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  perspective: 1000px;
+  margin-bottom: 20px;
+}
+
+/* ตัวการ์ด */
 .card {
-    background-color: transparent;
-    /* width: 300px;  <-- ลบบรรทัดนี้ */
-    
-    /* ใส่ 2 บรรทัดนี้แทน เพื่อให้ยืดหยุ่น */
-    width: 100%;
-    max-width: 300px; 
-    
-    height: 200px;
-    perspective: 1000px;
-    margin: 0 auto;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
 }
 
-/* ส่วนที่รวบรวมหน้าและหลังการ์ด เพื่อหมุนพร้อมกัน */
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s; /* ระยะเวลาอนิเมชันการพลิก */
-    transform-style: preserve-3d; /* ให้ลูกๆ (หน้า/หลัง) อยู่ในพื้นที่ 3D */
+/* สั่งพลิกการ์ด */
+.card.is-flipped {
+  transform: rotateY(180deg);
 }
 
-/* คลาสที่จะถูกเติมโดย JavaScript เมื่อมีการคลิก เพื่อทำการพลิก */
-.card.is-flipped .card-inner {
-    transform: rotateY(180deg);
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 25px;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-/* การตกแต่งพื้นฐานสำหรับทั้งหน้าและหลังการ์ด */
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* ซ่อนด้านหลังของ element เมื่อหมุน */
-    backface-visibility: hidden;
-    
-    /* จัดข้อความให้อยู่กึ่งกลาง */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    font-size: 24px;
-    font-weight: bold;
-    padding: 20px;
-}
-
-/* ตกแต่งเฉพาะด้านหน้า (ภาษาอังกฤษ) */
+/* หน้าแรก: คำใบ้ */
 .card-front {
-    background-color: #ffffff;
-    color: #333;
-    border: 2px solid #e0e0e0;
+  background: white;
+  border: 2px solid #6c5ce7;
 }
 
-/* ตกแต่งเฉพาะด้านหลัง (คำแปลภาษาไทย) */
+/* หน้าหลัง: เฉลย */
 .card-back {
-    background-color: #de8ce6; /* ใช้สีโทนเดียวกับปุ่มใน style.css */
-    color: white;
-    transform: rotateY(180deg); /* หมุนรอไว้ด้านหลัง 180 องศา */
-    border: 2px solid #de8ce6;
+  background: #6c5ce7;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.tag {
+  background: #e0e0ff;
+  color: #6c5ce7;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.card-back .tag {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+/* ลิสต์คำใบ้ */
+.hint-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.hint-list li {
+  background: #f8f9fa;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 0.9rem;
+  border-left: 5px solid #6c5ce7;
+}
+
+/* ปุ่มกด */
+.btn-next {
+  background: #2d3436;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-next:hover {
+  background: #6c5ce7;
+  transform: scale(1.05);
 }
