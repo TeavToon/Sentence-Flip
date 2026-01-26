@@ -1,123 +1,79 @@
-/* นำเข้า Font */
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap');
+/* นำเข้า Font สไตล์ Code */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
 
 body {
-  background: #f4f7f6;
-  font-family: 'Kanit', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
+    background-color: #0a0a0a; /* ดำสนิทแบบ Deep Loop */
+    background-image: 
+        radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%),
+        linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 20px 20px, 20px 20px;
+    font-family: 'Fira Code', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.game-container {
-  text-align: center;
-  width: 100%;
-  max-width: 400px;
-  padding: 20px;
-}
-
-h1 { color: #2d3436; font-size: 1.5rem; margin-bottom: 30px; }
-
-/* พื้นที่วางการ์ด */
-.card-stack {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  perspective: 1000px;
-  margin-bottom: 20px;
-}
-
-/* ตัวการ์ด */
 .card {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
+    width: 100%;
+    max-width: 350px;
+    height: 220px;
+    perspective: 1200px;
 }
 
-/* สั่งพลิกการ์ด */
-.card.is-flipped {
-  transform: rotateY(180deg);
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
 }
 
-.card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 25px;
-  padding: 30px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+.card.is-flipped .card-inner {
+    transform: rotateY(180deg);
 }
 
-/* หน้าแรก: คำใบ้ */
-.card-front {
-  background: white;
-  border: 2px solid #6c5ce7;
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    /* เอฟเฟกต์กระจก Hacker */
+    background: rgba(15, 15, 15, 0.9);
+    border: 2px solid #00ff41;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2), inset 0 0 10px rgba(0, 255, 65, 0.1);
+    color: #00ff41;
+    text-shadow: 0 0 5px #00ff41;
 }
 
-/* หน้าหลัง: เฉลย */
+/* ตกแต่งด้านหลังให้สีต่างกันเล็กน้อย */
 .card-back {
-  background: #6c5ce7;
-  color: white;
-  transform: rotateY(180deg);
+    background: rgba(0, 40, 20, 0.9);
+    border-color: #00ecff; /* สีฟ้า Cyan เพิ่มมิติ */
+    color: #00ecff;
+    text-shadow: 0 0 5px #00ecff;
+    transform: rotateY(180deg);
 }
 
-.tag {
-  background: #e0e0ff;
-  color: #6c5ce7;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin-bottom: 20px;
+/* เพิ่มกิมมิคเล็กๆ เหมือนหน้าจอ Scan */
+.card-front::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: rgba(0, 255, 65, 0.3);
+    animation: scan 3s infinite linear;
 }
 
-.card-back .tag {
-  background: rgba(255,255,255,0.2);
-  color: white;
-}
-
-/* ลิสต์คำใบ้ */
-.hint-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-.hint-list li {
-  background: #f8f9fa;
-  margin-bottom: 10px;
-  padding: 15px;
-  border-radius: 12px;
-  text-align: left;
-  font-size: 0.9rem;
-  border-left: 5px solid #6c5ce7;
-}
-
-/* ปุ่มกด */
-.btn-next {
-  background: #2d3436;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-next:hover {
-  background: #6c5ce7;
-  transform: scale(1.05);
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
 }
