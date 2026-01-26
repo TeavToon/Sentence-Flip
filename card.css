@@ -1,10 +1,15 @@
 /* กำหนดขนาดและ Perspective สำหรับภาพรวมการ์ด */
 .card {
     background-color: transparent;
-    width: 300px;
+    /* width: 300px;  <-- ลบบรรทัดนี้ */
+    
+    /* ใส่ 2 บรรทัดนี้แทน เพื่อให้ยืดหยุ่น */
+    width: 100%;
+    max-width: 300px; 
+    
     height: 200px;
-    perspective: 1000px; /* จำเป็นสำหรับเอฟเฟกต์ 3D */
-    margin: 0 auto; /* จัดกึ่งกลางแนวนอน */
+    perspective: 1000px;
+    margin: 0 auto;
     cursor: pointer;
 }
 

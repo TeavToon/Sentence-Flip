@@ -25,10 +25,10 @@ let currentSentence = null;
 // ===============================
 
 function getRandomSentence() {
+  // เพิ่มการเช็ค: ถ้ามีประโยคเดียว หรือไม่มีเลย ให้คืนค่าเดิมกลับไปเลย ไม่ต้องสุ่ม
+  if (sentences.length <= 1) return sentences[0];
+
   let newIndex;
-  
-  // ลูปสุ่มไปเรื่อยๆ ถ้าตัวเลขที่สุ่มได้ (newIndex) 
-  // ยังตรงกับประโยคปัจจุบัน (currentSentence)
   do {
     newIndex = Math.floor(Math.random() * sentences.length);
   } while (currentSentence && sentences[newIndex] === currentSentence); 
