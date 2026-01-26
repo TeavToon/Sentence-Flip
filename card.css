@@ -1,4 +1,4 @@
-/* ตกแต่งเฉพาะตัวการ์ด หน้า-หลัง แบบคลีน */
+/* การตกแต่งตัวการ์ด (หน้า-หลัง) สไตล์ Clean Minimal */
 .card-front, .card-back {
     position: absolute;
     width: 100%;
@@ -6,38 +6,33 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     
-    /* จัดวางเนื้อหา */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 24px;
-    box-sizing: border-box;
-
-    /* สไตล์ความคลีน */
-    background-color: #ffffff;
-    color: #334155; /* สีเทาเข้ม Slate ดูแพงกว่าดำสนิท */
+    
+    /* ปรับจูนความโค้งและเงาให้ดูละมุน */
     border-radius: 16px;
-    border: 1px solid #e2e8f0; /* เส้นขอบบางๆ สีเทาอ่อน */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* เงาฟุ้งแบบเบาบาง */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* เงาบางๆ ไม่ดำปึ้ด */
     
     /* ฟอนต์ */
-    font-size: 1.4rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 25px;
+    box-sizing: border-box;
 }
 
-/* ด้านหลัง (ตอนพลิกมาแล้ว) */
+/* ด้านหน้า: เน้นความขาวสะอาด อ่านง่าย */
+.card-front {
+    background-color: #ffffff;
+    color: #2d3436; /* สีเทาเข้ม อ่านสบายตากว่าดำสนิท */
+    border: 1px solid #edf2f7; /* เส้นขอบบางๆ ให้ดูมีมิติ */
+}
+
+/* ด้านหลัง: ใช้สีฟ้าอ่อนหรือเขียวอ่อนแบบพาสเทล ให้ความรู้สึก "ถูกต้อง/สำเร็จ" */
 .card-back {
-    background-color: #f8fafc; /* สีพื้นหลังต่างจากด้านหน้าเล็กน้อยพอให้รู้ว่าพลิก */
-    color: #2563eb; /* ใช้สีน้ำเงินสะอาดๆ สำหรับส่วนเฉลย */
+    background-color: #f0f7ff; /* สีฟ้าจางๆ สะอาดๆ */
+    color: #3182ce; /* ข้อความสีน้ำเงินเข้ม */
     transform: rotateY(180deg);
-    border-color: #cbd5e1;
-}
-
-/* เอฟเฟกต์ตอนเม้าส์ชี้ (Hover) ให้ดูมีปฏิสัมพันธ์ */
-.card:hover .card-front, 
-.card:hover .card-back {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    border-color: #cbd5e1;
+    border: 1px solid #bee3f8;
 }
