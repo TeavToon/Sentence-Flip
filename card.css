@@ -1,38 +1,64 @@
-/* การตกแต่งตัวการ์ด (หน้า-หลัง) สไตล์ Clean Minimal */
+/* กำหนดขนาดและ Perspective สำหรับภาพรวมการ์ด */
+.card {
+    background-color: transparent;
+    /* width: 300px;  <-- ลบบรรทัดนี้ */
+    
+    /* ใส่ 2 บรรทัดนี้แทน เพื่อให้ยืดหยุ่น */
+    width: 100%;
+    max-width: 300px; 
+    
+    height: 200px;
+    perspective: 1000px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+/* ส่วนที่รวบรวมหน้าและหลังการ์ด เพื่อหมุนพร้อมกัน */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s; /* ระยะเวลาอนิเมชันการพลิก */
+    transform-style: preserve-3d; /* ให้ลูกๆ (หน้า/หลัง) อยู่ในพื้นที่ 3D */
+}
+
+/* คลาสที่จะถูกเติมโดย JavaScript เมื่อมีการคลิก เพื่อทำการพลิก */
+.card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* การตกแต่งพื้นฐานสำหรับทั้งหน้าและหลังการ์ด */
 .card-front, .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* ซ่อนด้านหลังของ element เมื่อหมุน */
     backface-visibility: hidden;
     
+    /* จัดข้อความให้อยู่กึ่งกลาง */
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     
-    /* ปรับจูนความโค้งและเงาให้ดูละมุน */
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* เงาบางๆ ไม่ดำปึ้ด */
-    
-    /* ฟอนต์ */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     font-size: 24px;
-    font-weight: 600;
-    padding: 25px;
-    box-sizing: border-box;
+    font-weight: bold;
+    padding: 20px;
 }
 
-/* ด้านหน้า: เน้นความขาวสะอาด อ่านง่าย */
+/* ตกแต่งเฉพาะด้านหน้า (ภาษาอังกฤษ) */
 .card-front {
     background-color: #ffffff;
-    color: #2d3436; /* สีเทาเข้ม อ่านสบายตากว่าดำสนิท */
-    border: 1px solid #edf2f7; /* เส้นขอบบางๆ ให้ดูมีมิติ */
+    color: #333;
+    border: 2px solid #e0e0e0;
 }
 
-/* ด้านหลัง: ใช้สีฟ้าอ่อนหรือเขียวอ่อนแบบพาสเทล ให้ความรู้สึก "ถูกต้อง/สำเร็จ" */
+/* ตกแต่งเฉพาะด้านหลัง (คำแปลภาษาไทย) */
 .card-back {
-    background-color: #f0f7ff; /* สีฟ้าจางๆ สะอาดๆ */
-    color: #3182ce; /* ข้อความสีน้ำเงินเข้ม */
-    transform: rotateY(180deg);
-    border: 1px solid #bee3f8;
+    background-color: #de8ce6; /* ใช้สีโทนเดียวกับปุ่มใน style.css */
+    color: white;
+    transform: rotateY(180deg); /* หมุนรอไว้ด้านหลัง 180 องศา */
+    border: 2px solid #de8ce6;
 }
